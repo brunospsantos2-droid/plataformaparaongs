@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Página de cadastro para voluntários e apoiadores do Conecta org. Preencha seus dados e junte-se à nossa causa.">
+    <title>Cadastro - Conecta org</title>
+
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="images/logo.png">
+</head>
+<body>
+    
+    <header>
+    <div class="logo-container">
+        <h1>
+            <a href="index.html">
+                <img src="images/logo.png" alt="Logotipo da Conecta org" class="logo-img">
+                <span class="sr-only">Conecta org</span> 
+            </a>
+        </h1>
+    </div>
+    
+    <nav aria-label="Navegação Principal">
+        <ul>
+            <li><a href="index.html">Início</a></li>
+            </ul>
+    </nav>
+</header>
+
+    <main>
+        
+        <section id="formulario-cadastro">
+            <h2>Formulário de Inscrição</h2>
+            <p>Preencha seus dados abaixo para se candidatar como voluntário ou para receber nossas comunicações.</p>
+            
+            <form action="processa-cadastro.php" method="POST" class="formulario-padrao">
+                
+                <fieldset>
+                    <legend>Informações Pessoais</legend>
+
+                    <div class="form-group">
+                        <label for="nome">Nome Completo:</label>
+                        <input type="text" id="nome" name="nome" required minlength="5" maxlength="100" class="form-control" placeholder="Seu nome completo">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">E-mail:</label>
+                        <input type="email" id="email" name="email" required class="form-control" placeholder="exemplo@dominio.com">
+                    </div>
+
+                    <div class="form-row"> 
+                        <div class="form-group">
+                            <label for="cpf">CPF:</label>
+                            <input type="text" id="cpf" name="cpf" required 
+                                maxlength="14" 
+                                data-mask="cpf" 
+                                class="form-control"
+                                pattern="[0-9]{3}\.?[0-9]{3}\.?[0-9]{3}-?[0-9]{2}" 
+                                title="CPF no formato 000.000.000-00">
+                        </div>
+
+                        <div class="form-group">
+                            <label for="telefone">Telefone:</label>
+                            <input type="tel" id="telefone" name="telefone" required 
+                                maxlength="15" 
+                                data-mask="telefone" 
+                                class="form-control"
+                                pattern="\([0-9]{2}\) [0-9]{4,5}-[0-9]{4}"
+                                title="Telefone no formato (XX) XXXXX-XXXX">
+                        </div>
+                    </div> <div class="form-group">
+                        <label for="dataNasc">Data de Nascimento:</label>
+                        <input type="date" id="dataNasc" name="dataNasc" required max="2007-01-01" class="form-control"> 
+                    </div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Informações de Endereço</legend>
+
+                    <div class="form-group">
+                        <label for="cep">CEP:</label>
+                        <input type="text" id="cep" name="cep" required 
+                            maxlength="9" 
+                            data-mask="cep" 
+                            class="form-control"
+                            pattern="[0-9]{5}-?[0-9]{3}" 
+                            title="CEP no formato 00000-000">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="endereco">Endereço (Rua e Número):</label>
+                        <input type="text" id="endereco" name="endereco" required class="form-control" placeholder="Rua Exemplo, 123">
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="cidade">Cidade:</label>
+                            <input type="text" id="cidade" name="cidade" required class="form-control" placeholder="Sua cidade">
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="estado">Estado:</label>
+                            <select id="estado" name="estado" required class="form-control">
+                                <option value="">-- Selecione o Estado --</option>
+                                <option value="AC">Acre</option>
+                                <option value="AL">Alagoas</option>
+                                <option value="AP">Amapá</option>
+                                <option value="AM">Amazonas</option>
+                                <option value="BA">Bahia</option>
+                                <option value="CE">Ceará</option>
+                                <option value="DF">Distrito Federal</option>
+                                <option value="ES">Espírito Santo</option>
+                                <option value="GO">Goiás</option>
+                                <option value="MA">Maranhão</option>
+                                <option value="MT">Mato Grosso</option>
+                                <option value="MS">Mato Grosso do Sul</option>
+                                <option value="MG">Minas Gerais</option>
+                                <option value="PA">Pará</option>
+                                <option value="PB">Paraíba</option>
+                                <option value="PR">Paraná</option>
+                                <option value="PE">Pernambuco</option>
+                                <option value="PI">Piauí</option>
+                                <option value="RJ">Rio de Janeiro</option>
+                                <option value="RN">Rio Grande do Norte</option>
+                                <option value="RS">Rio Grande do Sul</option>
+                                <option value="RO">Rondônia</option>
+                                <option value="RR">Roraima</option>
+                                <option value="SC">Santa Catarina</option>
+                                <option value="SP">São Paulo</option>
+                                <option value="SE">Sergipe</option>
+                                <option value="TO">Tocantins</option>
+                            </select>
+                        </div>
+                    </div> </fieldset>
+                
+                <button type="submit" class="btn btn-primario">Finalizar Cadastro</button>
+            </form>
+            <div id="cadastro-log" style="display: none;" class="card">
+    </div>
+        </section>
+        
+        <aside class="nota-voluntariado">
+            <h3>Privacidade</h3>
+            <p>Seus dados serão usados exclusivamente para fins de comunicação interna e gestão de voluntariado. Garantimos a total segurança e confidencialidade.</p>
+        </aside>
+    </main>
+
+  <footer>
+    <p>&copy; 2025 [Nome da Organização]. Todos os direitos reservados.</p>
+    <div class="footer-links">
+        <a href="#">Política de Privacidade</a>
+        <a href="#">Termos de Uso</a>
+    </div>
+    </footer>
+    
+    <script src="js/script.js"></script>
+</body>
+</html>

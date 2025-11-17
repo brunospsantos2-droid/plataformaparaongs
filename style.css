@@ -1,0 +1,575 @@
+/* ==================================== */
+/* 1. VARIÁVEIS GLOBAIS (DESIGN SYSTEM) */
+/* ==================================== */
+:root {
+    /* Cores (Escolha cores que garantam o Contraste WCAG AA) */
+    --cor-primaria: #007bff; /* Azul vibrante para ações principais (botões, links) */
+    --cor-secundaria: #6c757d; /* Cinza para elementos secundários */
+    --cor-fundo: #f8f9fa; /* Fundo claro para o corpo */
+    --cor-texto-principal: #343a40; /* Preto escuro para bom contraste */
+    --cor-sucesso: #28a745; /* Verde para sucesso ou doação */
+    --cor-erro: #dc3545; /* Vermelho para erros ou alertas */
+
+    /* Tipografia */
+    --fonte-principal: 'Arial', sans-serif;
+    --tamanho-base: 16px;
+
+    /* Spacing (Espaçamento baseado em múltiplos de 8px) */
+    --espaco-xs: 4px;
+    --espaco-sm: 8px;
+    --espaco-md: 16px;
+    --espaco-lg: 24px;
+    --espaco-xl: 32px;
+
+    /* Breakpoints (Mobile-First: Min-Width) */
+    --breakpoint-tablet: 600px;
+    --breakpoint-desktop: 1024px;
+}
+
+/* ==================================== */
+/* 2. RESET BÁSICO E ESTILOS GERAIS */
+/* (Mobile-First: Estilos para Telas Pequenas) */
+/* ==================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* Garante que padding e border não aumentem o tamanho do elemento */
+}
+
+body {
+    font-family: var(--fonte-principal);
+    font-size: var(--tamanho-base);
+    line-height: 1.6;
+    color: var(--cor-texto-principal);
+    background-color: var(--cor-fundo);
+    padding: var(--espaco-sm); /* Um leve padding nas laterais em mobile */
+}
+
+/* Estilos de Tipografia */
+h1, h2, h3, h4 {
+    margin-bottom: var(--espaco-md);
+    line-height: 1.2;
+    color: var(--cor-primaria);
+}
+
+h1 { font-size: 2em; } /* 32px */
+h2 { font-size: 1.75em; } /* 28px */
+h3 { font-size: 1.5em; } /* 24px */
+
+/* Links */
+a {
+    color: var(--cor-primaria);
+    text-decoration: none;
+    transition: color 0.3s;
+}
+
+a:hover {
+    color: var(--cor-secundaria);
+    text-decoration: underline;
+}
+
+/* Imagens Responsivas */
+img {
+    max-width: 100%;
+    height: auto;
+    display: block; /* Remove o espaço extra abaixo da imagem */
+    border-radius: var(--espaco-sm); /* Borda levemente arredondada */
+}
+
+/* ==================================== */
+/* 3. LAYOUT BÁSICO (Mobile-First) */
+/* ==================================== */
+
+/* Header e Navegação (Padrão de coluna única em mobile) */
+header {
+    background-color: #fff;
+    padding: var(--espaco-md);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+nav ul {
+    list-style: none;
+    text-align: center; /* Centraliza os itens da navegação em mobile */
+    padding-top: var(--espaco-sm);
+}
+
+nav li {
+    margin: var(--espaco-sm) 0; /* Espaçamento vertical entre os links */
+}
+
+/* Main Content */
+main {
+    padding: var(--espaco-lg) var(--espaco-sm);
+}
+
+section {
+    margin-bottom: var(--espaco-xl);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: var(--espaco-md);
+    border-top: 1px solid #ccc;
+    background-color: #fff;
+    font-size: 0.875em; /* Texto um pouco menor */
+}
+
+/* ==================================== */
+/* 4. BREAKPOINT TABLET (600px e acima) */
+/* ==================================== */
+@media (min-width: 600px) {
+    /* Layouts que funcionam melhor em linha, como o menu */
+    nav ul {
+        display: flex; /* Transforma o menu em linha */
+        justify-content: center;
+        gap: var(--espaco-lg);
+        padding-top: 0;
+    }
+
+    nav li {
+        margin: 0; /* Remove a margem vertical desnecessária */
+    }
+
+    main {
+        padding: var(--espaco-xl) var(--espaco-md);
+    }
+}
+
+/* ==================================== */
+/* 5. BREAKPOINT DESKTOP (1024px e acima) */
+/* ==================================== */
+@media (min-width: 1024px) {
+    /* Centraliza o conteúdo e limita a largura para melhor leitura */
+    body {
+        padding: 0;
+    }
+
+    header, main, footer {
+        max-width: 1200px; /* Largura máxima para conteúdo em desktop */
+        margin-left: auto;
+        margin-right: auto;
+        padding-left: var(--espaco-xl);
+        padding-right: var(--espaco-xl);
+    }
+
+    /* Layout mais complexo com Flexbox ou Grid */
+    /* Ex: Layout de 2 colunas para a seção de projetos */
+    #projetos-atuais {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr); /* 2 colunas de largura igual */
+        gap: var(--espaco-lg);
+    }
+}
+
+/* ==================================== */
+/* 6. ESTILOS DE COMPONENTES (Ex: Botão) */
+/* ==================================== */
+.btn {
+    display: inline-block;
+    padding: var(--espaco-sm) var(--espaco-md);
+    margin-top: var(--espaco-md);
+    border-radius: var(--espaco-sm);
+    text-align: center;
+    cursor: pointer;
+    font-weight: bold;
+    border: 2px solid var(--cor-primaria);
+    background-color: var(--cor-primaria);
+    color: #fff;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+.btn:hover {
+    background-color: #0056b3; /* Cor mais escura no hover */
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Botão Secundário para Voluntariado */
+.btn-secundario {
+    background-color: transparent;
+    color: var(--cor-primaria);
+    border-color: var(--cor-primaria);
+}
+
+.btn-secundario:hover {
+    background-color: var(--cor-primaria);
+    color: #fff;
+}
+/* ==================================== */
+/* 7. ESTILIZAÇÃO DO FORMULÁRIO (cadastro.html) */
+/* ==================================== */
+
+/* Agrupamento Lógico: Fieldset */
+fieldset {
+    border: 1px solid #ccc;
+    padding: var(--espaco-lg);
+    margin-bottom: var(--espaco-xl);
+    border-radius: var(--espaco-sm);
+}
+
+/* Título do Agrupamento */
+legend {
+    font-size: 1.25em;
+    font-weight: bold;
+    color: var(--cor-primaria);
+    padding: 0 var(--espaco-sm);
+    margin-left: -var(--espaco-sm); /* Ajusta para começar um pouco antes da borda */
+}
+
+/* Grupos de Campo (Label + Input) */
+.form-group {
+    margin-bottom: var(--espaco-md);
+    /* Garante que os inputs preencham a linha inteira em mobile */
+    display: flex;
+    flex-direction: column;
+}
+
+.form-group label {
+    display: block;
+    margin-bottom: var(--espaco-xs);
+    font-weight: 600;
+    color: var(--cor-texto-principal);
+}
+
+/* Controle de Formulário (Inputs, Selects) */
+.form-control {
+    width: 100%;
+    padding: var(--espaco-sm);
+    border: 1px solid #ced4da;
+    border-radius: var(--espaco-xs);
+    transition: border-color 0.3s, box-shadow 0.3s;
+    font-size: 1em;
+}
+
+/* Foco e Interatividade */
+.form-control:focus {
+    border-color: var(--cor-primaria);
+    box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* Sombra suave para indicar foco */
+    outline: none; /* Remove a borda padrão do navegador */
+}
+
+/* Estilo para campos inválidos (Validação Nativa HTML5) */
+.form-control:invalid:not(:focus):not(:placeholder-shown) {
+    border-color: var(--cor-erro);
+}
+
+/* Título da seção Privacidade */
+.nota-voluntariado h3 {
+    color: var(--cor-secundaria);
+    margin-top: var(--espaco-lg);
+}
+
+/* ==================================== */
+/* 8. RESPONSIVIDADE DO FORMULÁRIO (Desktop) */
+/* ==================================== */
+@media (min-width: 768px) {
+    /* Em telas maiores, podemos tentar colocar alguns campos lado a lado
+       ou melhorar o layout do fieldset. */
+    
+    /* Exemplo: Organizar dois campos lado a lado em telas maiores */
+    .form-row {
+        display: flex;
+        gap: var(--espaco-lg);
+    }
+
+    .form-row .form-group {
+        flex: 1; /* Garante que os grupos dentro do form-row tenham a mesma largura */
+    }
+    
+    /* Adicione as classes form-row no seu HTML (opcional):
+       <div class="form-row">
+           <div class="form-group"> ... CPF ... </div>
+           <div class="form-group"> ... Telefone ... </div>
+       </div>
+    */
+}
+/* ==================================== */
+/* 9. ESTILIZAÇÃO DE COMPONENTES CARD */
+/* ==================================== */
+
+/* O Card base, usado para agrupar conteúdo em destaque */
+.card {
+    background-color: #fff;
+    border-radius: var(--espaco-sm); /* Borda arredondada */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para profundidade */
+    padding: var(--espaco-lg);
+    margin-bottom: var(--espaco-md);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+/* Efeito de interatividade (UX) */
+.card:hover {
+    transform: translateY(-5px); /* Levanta o card no hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card h3 {
+    color: var(--cor-primaria);
+    margin-top: 0;
+}
+
+/* Estilo para as imagens dentro do card de projeto */
+.projeto-item figure img {
+    border-radius: var(--espaco-xs);
+    margin-bottom: var(--espaco-md);
+}
+
+/* Indicadores de Impacto (para projetos.html) */
+.indicadores {
+    margin: var(--espaco-md) 0;
+    padding: var(--espaco-md);
+    border-left: 4px solid var(--cor-sucesso);
+    background-color: #e9f7ef; /* Fundo mais claro para destaque */
+    font-size: 0.9em;
+}
+
+.indicadores h4 {
+    margin-bottom: var(--espaco-sm);
+    color: var(--cor-texto-principal);
+}
+
+/* ==================================== */
+/* 10. LAYOUT DE GRUPOS DE CARDS (Mobile-First) */
+/* ==================================== */
+
+/* Padrão Mobile: Cards em Coluna */
+.card-container, .projetos-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaco-lg); /* Espaçamento entre os cards */
+}
+
+/* ==================================== */
+/* 11. RESPONSIVIDADE DE CARDS (Tablet e Desktop) */
+/* ==================================== */
+
+/* Tablet (600px e acima) */
+@media (min-width: 600px) {
+    /* Layout de duas colunas para cards em telas maiores que mobile */
+    .card-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* 2 ou mais colunas */
+        gap: var(--espaco-xl);
+    }
+}
+
+/* Desktop (1024px e acima) */
+@media (min-width: 1024px) {
+    /* Layout de três colunas para cards em projetos.html */
+    .projetos-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); 
+        gap: var(--espaco-xl);
+    }
+}
+/* ==================================== */
+/* 12. ESTILIZAÇÃO DO LOGO E CABEÇALHO */
+/* ==================================== */
+
+/* Container para organizar logo e navegação */
+header {
+    /* Usaremos Flexbox para alinhar o logo e o menu lado a lado em telas maiores */
+    display: flex;
+    flex-direction: column; /* Padrão Mobile: Logo em cima, menu embaixo */
+    align-items: center;
+    padding: var(--espaco-md) var(--espaco-sm);
+    /* ... outros estilos de header ... */
+}
+
+.logo-container h1 {
+    /* Remove a margem padrão do H1 para o logo ficar alinhado */
+    margin: 0; 
+}
+
+/* Estilo da Imagem do Logo */
+.logo-img {
+    max-height: 120px; /* Altura máxima para mobile */
+    width: auto;
+    /* Remove a borda e o border-radius que o estilo 'img' global pode ter adicionado */
+    border-radius: 0;
+    box-shadow: none;
+}
+
+/* Acessibilidade: Oculta texto que é redundante se o logo for visualmente claro */
+.sr-only { 
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border-width: 0;
+}
+
+/* Ajuste Responsivo para Desktop (1024px e acima) */
+@media (min-width: 1024px) {
+    header {
+        flex-direction: row; /* Logo e menu LADO A LADO */
+        justify-content: space-between; /* Espaço entre logo e menu */
+        padding: var(--espaco-md) var(--espaco-xl);
+    }
+    
+    .logo-img {
+        max-height: 120px; /* Logo maior em telas grandes */
+    }
+    
+    nav {
+        margin-top: 0;
+    }
+}
+/* ==================================== */
+/* 9. ESTILIZAÇÃO DE COMPONENTES CARD */
+/* ==================================== */
+
+/* O Card base, usado para agrupar conteúdo em destaque */
+.card {
+    background-color: #fff;
+    border-radius: var(--espaco-sm); /* Borda arredondada */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra suave para profundidade */
+    padding: var(--espaco-lg);
+    margin-bottom: var(--espaco-md);
+    /* Transição para efeito hover (melhora UX) */
+    transition: transform 0.3s ease, box-shadow 0.3s ease; 
+}
+
+/* Efeito de interatividade (UX) */
+.card:hover {
+    transform: translateY(-5px); /* Levanta o card no hover */
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2);
+}
+
+.card h3 {
+    color: var(--cor-primaria);
+    margin-top: 0;
+}
+
+/* Estilo para as imagens dentro do card de projeto */
+.projeto-item figure img {
+    border-radius: var(--espaco-xs);
+    margin-bottom: var(--espaco-md);
+}
+
+/* Indicadores de Impacto (usado em projetos.html) */
+.indicadores {
+    margin: var(--espaco-md) 0;
+    padding: var(--espaco-md);
+    border-left: 4px solid var(--cor-sucesso); /* Borda colorida para destaque */
+    background-color: #e9f7ef; /* Fundo mais claro para destaque */
+    font-size: 0.9em;
+}
+
+.indicadores h4 {
+    margin-bottom: var(--espaco-sm);
+    color: var(--cor-texto-principal);
+}
+
+/* ==================================== */
+/* 10. LAYOUT DE GRUPOS DE CARDS (Mobile-First) */
+/* ==================================== */
+
+/* Padrão Mobile: Cards em Coluna (já garantido pelo flex-direction: column) */
+.card-container, .projetos-container {
+    display: flex;
+    flex-direction: column;
+    gap: var(--espaco-lg); /* Espaçamento entre os cards */
+}
+
+/* ==================================== */
+/* 11. RESPONSIVIDADE DE CARDS (Tablet e Desktop) */
+/* ==================================== */
+
+/* Tablet (600px e acima) */
+@media (min-width: 600px) {
+    /* Usa GRID para layout de 2 ou mais colunas, adaptando-se ao espaço */
+    .card-container {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Colunas flexíveis */
+        gap: var(--espaco-xl);
+    }
+}
+
+/* Desktop (1024px e acima) */
+@media (min-width: 1024px) {
+    /* Mantém o layout de Grid, permitindo até 3 projetos lado a lado */
+    .projetos-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr); 
+        gap: var(--espaco-xl);
+    }
+}
+/* ==================================== */
+/* 13. ESTILIZAÇÃO DO RODAPÉ (FOOTER) */
+/* ==================================== */
+
+footer {
+    /* Fundo contrastante para destacar o rodapé */
+    background-color: var(--cor-texto-principal); 
+    color: #fff; /* Texto branco */
+    padding: var(--espaco-lg) var(--espaco-md);
+    text-align: center;
+    border-top: none; /* Remove a borda da estilização básica */
+    font-size: 0.9em;
+}
+
+footer p {
+    margin: var(--espaco-sm) 0;
+}
+
+/* Estilo para links no rodapé (Acessibilidade e Contraste) */
+footer a {
+    color: #a0c3ff; /* Cor mais clara para contraste com fundo escuro */
+    text-decoration: none;
+    padding: 0 var(--espaco-sm);
+    display: block; /* Cada link em sua própria linha no mobile */
+}
+
+footer a:hover {
+    color: var(--cor-primaria);
+    text-decoration: underline;
+}
+
+/* ==================================== */
+/* 14. ELEMENTO DE DESTAQUE (HERO - index.html) */
+/* ==================================== */
+
+.hero {
+    background-color: #e9f7ff; /* Um fundo levemente azulado para destaque */
+    padding: var(--espaco-xl) var(--espaco-md);
+    text-align: center;
+    margin-bottom: var(--espaco-xl);
+    border-radius: var(--espaco-sm);
+}
+
+.hero h2 {
+    color: var(--cor-primaria);
+    font-size: 2.2em;
+}
+
+.hero p {
+    max-width: 800px;
+    margin: 0 auto var(--espaco-lg) auto;
+}
+
+/* ==================================== */
+/* 15. AJUSTE RESPONSIVO FINAL */
+/* ==================================== */
+
+/* Desktop (1024px e acima) */
+@media (min-width: 1024px) {
+    /* Organiza os links do rodapé em linha */
+    .footer-links {
+        display: flex;
+        justify-content: center;
+        gap: var(--espaco-lg);
+    }
+    
+    footer a {
+        display: inline; /* Volta a exibir os links na mesma linha */
+    }
+
+    /* O footer precisa de uma div para agrupar os links no HTML */
+    /* Exemplo: <div class="footer-links"><a href="#">...</a></div> */
+}
