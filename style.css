@@ -598,3 +598,69 @@ footer a:focus,
     /* Mantém o estilo de box-shadow e evita que o outline volte */
     outline: none;
 }
+/* Modo Escuro Acessível (Dark Mode) */
+@media (prefers-color-scheme: dark) {
+    :root {
+        /* Inverte as cores principais para alto contraste no tema escuro */
+        --cor-fundo: #0c0c0c; /* Fundo muito escuro */
+        --cor-principal-claro: #1f1f1f; /* Elementos mais claros */
+        --cor-texto-principal: #ffffff; /* Texto branco puro */
+        --cor-primaria: #007bff; /* Mantém a cor primária ou ajusta */
+    }
+    /* Ajustes específicos para a navegação e rodapé se necessário */
+    .header, footer {
+        border-bottom: 1px solid var(--cor-principal-claro);
+    }
+}
+/* ==================================== */
+/* 17. ACESSIBILIDADE WCAG: MODO ESCURO */
+/* ==================================== */
+
+/* Verifica a preferência do sistema operacional do usuário */
+@media (prefers-color-scheme: dark) {
+
+    /* Altera o Design System (Variáveis CSS) para o tema escuro */
+    :root {
+        /* Cores de Fundo Invertidas */
+        --cor-fundo: #121212; /* Fundo muito escuro */
+        --cor-principal-claro: #1e1e1e; /* Cor para seções e cards */
+        
+        /* Cores de Texto Invertidas */
+        --cor-texto-principal: #f0f0f0; /* Texto claro */
+        --cor-texto-secundario: #aaaaaa; /* Texto secundário levemente escuro */
+        
+        /* Mantém a cor de destaque (primária) para consistência e acessibilidade */
+        --cor-primaria: #0096ff; 
+        
+        /* Garante que o foco visual de acessibilidade continue sendo de alto contraste */
+        --cor-foco-acessivel: #88eeff; 
+    }
+
+    /* Regras específicas para elementos */
+    body {
+        background-color: var(--cor-fundo);
+        color: var(--cor-texto-principal);
+    }
+    
+    .card, section {
+        background-color: var(--cor-principal-claro);
+        border: 1px solid #333; /* Adiciona uma borda suave */
+    }
+
+    /* Garante que o header e o footer tenham o fundo escuro */
+    .header, footer {
+        background-color: var(--cor-principal-claro);
+        border-top: 1px solid #333;
+    }
+    
+    /* Garante que os links e botões tenham texto claro */
+    a, .btn {
+        color: var(--cor-texto-principal);
+    }
+    
+    /* Foco acessível (já definido, mas garantimos que funciona com as novas cores) */
+    *:focus {
+        box-shadow: 0 0 0 3px var(--cor-fundo), 
+                    0 0 0 5px var(--cor-foco-acessivel); 
+    }
+}
