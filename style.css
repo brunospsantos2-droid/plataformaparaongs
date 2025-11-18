@@ -573,3 +573,28 @@ footer a:hover {
     /* O footer precisa de uma div para agrupar os links no HTML */
     /* Exemplo: <div class="footer-links"><a href="#">...</a></div> */
 }
+/* ==================================== */
+/* 16. ACESSIBILIDADE WCAG: FOCO VISUAL */
+/* ==================================== */
+
+/* O seletor *:focus aplica o estilo a qualquer elemento focado (tecla TAB) */
+*:focus {
+    /* Remove o contorno padrão, que pode ser inconsistente entre navegadores */
+    outline: none; 
+    
+    /* Adiciona um anel de foco claro, forte e de alto contraste. 
+       Garantimos um contraste alto com a cor primaria e uma espessura visível (2px). */
+    box-shadow: 0 0 0 3px var(--cor-fundo), 
+                0 0 0 5px var(--cor-primaria);
+    
+    /* Garante que o efeito de transição não esconda o foco rapidamente */
+    transition: none; 
+}
+
+/* Garante que o foco em links dentro do menu ou rodapé também seja claro */
+nav a:focus,
+footer a:focus,
+.btn:focus {
+    /* Mantém o estilo de box-shadow e evita que o outline volte */
+    outline: none;
+}
